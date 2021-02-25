@@ -56,7 +56,10 @@ terminal.addEventListener('keyup', (e) => {
 	}
 });
 
-let myUsername = 'someguy';
-let addr = new URL('https://mysite.com/login');
-addr.username = myUsername;
-console.log(addr.href);
+const getUserIp = async () => {
+	const fetchIp = await fetch('https://api.ipify.org/?format=json');
+	const userIp = await fetchIp.json();
+	document.querySelector('.user__label').innerText =
+		`Admin@${userIp.ip}:~` || `Shanto@Admin:~`;
+};
+getUserIp();
